@@ -1,10 +1,14 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+
 namespace rangeChecker
 {
-    public class Program
-    {   
-        static void Main() 
+    class Program
+    {
+        static void Main()
         {
-        
+
         }
     }
 }
