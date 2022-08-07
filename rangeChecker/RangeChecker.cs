@@ -5,8 +5,6 @@ namespace rangeChecker
     public class RangeChecker
     {
         const string outputFormat = "{0}-{1}, {2}\n";
-        
-        static void Main() { }
 
         public static string GetContinuousRangesInCsv(List<int> values)
         {
