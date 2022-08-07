@@ -1,4 +1,3 @@
-﻿using System;
 using System.Collections.Generic;
 
 namespace rangeChecker
@@ -7,24 +6,25 @@ namespace rangeChecker
     {
         const string outputFormat = "{0}-{1}, {2}\n";
 
-        static void Main()
-        {
-            GetContinuousRangesInCsv(new List<int>() { 3, 3, 5, 4, 10, 11, 12 });
-            Console.WriteLine("All is well");
-        }
-
         public static string GetContinuousRangesInCsv(List<int> values)
         {
             if (values != null)
             {
-                values.Sort();
-                string csvs = GetConsecutiveValues(values);
-                return csvs;
+                List<List<int>> ranges = GetConsecutiveRanges(values);
+                string finalCsv = ConvertRangesToString(ranges);
+                return finalCsv;
             }
             return string.Empty;
         }
 
-        static string GetConsecutiveValues(List<int> values)
+        static List<List<int>> GetConsecutiveRanges(List<int> values)
+        {
+            values.Sort();
+            List<List<int>> ranges = GetConsecutiveRangesFromSortedList(values);
+            return ranges;
+        }
+
+        static List<List<int>> GetConsecutiveRangesFromSortedList(List<int> values)
         {
             List<List<int>> ranges = new List<List<int>>();
 
@@ -54,19 +54,29 @@ namespace rangeChecker
                 }
             }
 
-            string output = string.Empty;
-            for (int j = 0; j < ranges.Count; j++)
-            {
-                if (ranges[j].Count > 1)
-                {
-                    List<int> range = ranges[j];
-                    output += string.Format(outputFormat, range[0], range[range.Count - 1], range.Count);
-                }
+            return ranges;
+        }
 
+        static string ConvertRangesToString(List<List<int>> ranges)
+        {
+            string output = string.Empty;
+
+            for (int i = 0; i < ranges.Count; i++)
+            {
+                output += ConvertRangeToString(ranges[i]);
             }
-            Console.WriteLine(output);
 
             return output;
+        }
+
+        static string ConvertRangeToString(List<int> range)
+        {
+            if (range.Count > 1)
+            {
+                return string.Format(outputFormat, range[0], range[range.Count - 1], range.Count);
+            }
+
+            return string.Empty;
         }
     }
 }
