@@ -66,12 +66,7 @@ namespace rangeChecker
 
         static bool IsCurrentOrNextNumber(int currentNumber, int previousNumber)
         {
-            if (currentNumber == previousNumber || currentNumber == previousNumber + 1)
-            {
-                return true;
-            }
-
-            return false;
+            return currentNumber == previousNumber || currentNumber == previousNumber + 1;
         }
     }
 }
