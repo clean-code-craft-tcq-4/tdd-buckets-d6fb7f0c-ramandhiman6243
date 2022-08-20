@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace rangeChecker
+namespace Range
 {
     class Program
     {

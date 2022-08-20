@@ -1,0 +1,29 @@
+﻿Input
+A set of periodic current samples from a charging session, as an array of integers. For example: 3, 3, 5, 4, 10, 11, 12
+
+
+Functionality
+The continuous ranges in there are: 3,4,5 and 10,11,12.
+
+The task is to detect the ranges and output the number of readings in each range.
+
+
+In this example,
+
+the 3-5 range has 4 readings
+the 10-12 range has 3 readings.
+Output
+The expected output would be in comma-separated (csv format):
+
+
+Range, Readings
+3-5, 4
+10-12, 3
+
+
+Tests:
+Check series for range and readings
+Check whole continuous series
+Check no consecutive series
+Check empty series
+Smallest test

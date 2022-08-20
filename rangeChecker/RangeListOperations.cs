@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace rangeChecker
+namespace Range
 {
     public class RangeListOperations
     {
@@ -53,7 +53,7 @@ namespace rangeChecker
 
         private static void AppendRange(ref List<int> currentRange, List<List<int>> ranges, ref int lastNumber, int currentValue)
         {
-            if (IsCurrentOrNextNumber(currentValue, lastNumber))
+            if (DoesNumberBelongInRange(currentValue, lastNumber))
             {
                 currentRange.Add(currentValue);
             }
@@ -64,7 +64,7 @@ namespace rangeChecker
             lastNumber = currentValue;
         }
 
-        static bool IsCurrentOrNextNumber(int currentNumber, int previousNumber)
+        static bool DoesNumberBelongInRange(int currentNumber, int previousNumber)
         {
             return currentNumber == previousNumber || currentNumber == previousNumber + 1;
         }

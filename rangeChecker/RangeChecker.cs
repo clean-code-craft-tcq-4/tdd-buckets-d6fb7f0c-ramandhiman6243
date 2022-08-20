@@ -1,15 +1,15 @@
 ﻿using System.Collections.Generic;
 
-namespace rangeChecker
+namespace Range
 {
     public class RangeChecker
     {
-        public static string GetContinuousRangesInCsv(List<int> values)
+        public static string GetContinuousRangesInCsv(List<int> values, string outputFormat)
         {
             if (values != null)
             {
                 List<List<int>> ranges = GetConsecutiveRanges(values);
-                string finalCsv = ConvertToString.ConvertRangesToString(ranges);
+                string finalCsv = StringUtility.ConvertRangesToString(ranges, outputFormat);
                 return finalCsv;
             }
             return string.Empty;
@@ -21,6 +21,5 @@ namespace rangeChecker
             List<List<int>> ranges = RangeListOperations.GetConsecutiveRangesFromSortedList(values);
             return ranges;
         }
-
     }
 }
