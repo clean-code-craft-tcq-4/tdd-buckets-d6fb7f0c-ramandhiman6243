@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Text;
 
 namespace Range
@@ -12,9 +12,7 @@ namespace Range
             for (int i = 0; i < ranges.Count; i++)
             {
                 string range = ConvertRangeToString(ranges[i], outputFormat);
-
-                if (!string.IsNullOrEmpty(range))
-                    outputString.Append(range);
+                AppendIfNotEmpty(outputString, range);
             }
 
             return outputString.ToString();
@@ -28,6 +26,12 @@ namespace Range
             }
 
             return string.Empty;
+        }
+
+        private static void AppendIfNotEmpty(StringBuilder outputString, string range)
+        {
+            if (!string.IsNullOrEmpty(range))
+                outputString.Append(range);
         }
     }
 }
