@@ -4,19 +4,19 @@ namespace Range
 {
     public class RangeListOperations
     {
-        public static List<List<int>> GetConsecutiveRangesFromSortedList(List<int> values)
+        public static List<RangeData> GetConsecutiveRangesFromSortedList(List<int> values)
         {
-            List<List<int>> ranges = new List<List<int>>();
+            List<RangeData> ranges = new List<RangeData>();
 
             int lastNumber = 0;
-            List<int> currentRange = null;
+            RangeData currentRange = null;
 
             GetRangesByRecursion(0, ref values, ref currentRange, ranges, lastNumber);
 
             return ranges;
         }
 
-        static void GetRangesByRecursion(int i, ref List<int> inputValues, ref List<int> currentRange, List<List<int>> ranges, int lastNumber)
+        static void GetRangesByRecursion(int i, ref List<int> inputValues, ref RangeData currentRange, List<RangeData> ranges, int lastNumber)
         {
             if (i < inputValues.Count)
             {
@@ -26,7 +26,7 @@ namespace Range
             }
         }
 
-        private static void GetRanges(int i, ref List<int> currentRange, List<List<int>> ranges, ref int lastNumber, int currentValue)
+        private static void GetRanges(int i, ref RangeData currentRange, List<RangeData> ranges, ref int lastNumber, int currentValue)
         {
             if (i == 0)
             {
@@ -38,24 +38,25 @@ namespace Range
             }
         }
 
-        private static void NewRange(out List<int> currentRange, List<List<int>> ranges, out int lastNumber, int currentValue)
+        private static void NewRange(out RangeData currentRange, List<RangeData> ranges, out int lastNumber, int currentValue)
         {
             currentRange = CreateNewRangeItem(ranges, currentValue);
             lastNumber = currentValue;
         }
 
-        private static List<int> CreateNewRangeItem(List<List<int>> ranges, int currentValue)
+        private static RangeData CreateNewRangeItem(List<RangeData> ranges, int currentValue)
         {
-            List<int> currentRange = new List<int>() { currentValue };
+            RangeData currentRange = new RangeData();
+            currentRange.AddNumber(currentValue);
             ranges.Add(currentRange);
             return currentRange;
         }
 
-        private static void AppendRange(ref List<int> currentRange, List<List<int>> ranges, ref int lastNumber, int currentValue)
+        private static void AppendRange(ref RangeData currentRange, List<RangeData> ranges, ref int lastNumber, int currentValue)
         {
             if (DoesNumberBelongInRange(currentValue, lastNumber))
             {
-                currentRange.Add(currentValue);
+                currentRange.AddNumber(currentValue);
             }
             else
             {

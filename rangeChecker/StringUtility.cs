@@ -1,11 +1,11 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Text;
 
 namespace Range
 {
     public class StringUtility
     {
-        public static string ConvertRangesToString(List<List<int>> ranges, string outputFormat)
+        public static string ConvertRangesToString(List<RangeData> ranges, string outputFormat)
         {
             StringBuilder outputString = new StringBuilder();
 
@@ -18,11 +18,11 @@ namespace Range
             return outputString.ToString();
         }
 
-        public static string ConvertRangeToString(List<int> range, string outputFormat)
+        public static string ConvertRangeToString(RangeData range, string outputFormat)
         {
             if (range.Count > 1)
             {
-                return string.Format(outputFormat, range[0], range[range.Count - 1], range.Count);
+                return string.Format(outputFormat, range.Start, range.End, range.Count);
             }
 
             return string.Empty;

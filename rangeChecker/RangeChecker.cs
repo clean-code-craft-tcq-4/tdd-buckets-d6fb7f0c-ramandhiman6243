@@ -8,17 +8,17 @@ namespace Range
         {
             if (values != null)
             {
-                List<List<int>> ranges = GetConsecutiveRanges(values);
+                List<RangeData> ranges = GetConsecutiveRanges(values);
                 string finalCsv = StringUtility.ConvertRangesToString(ranges, outputFormat);
                 return finalCsv;
             }
             return string.Empty;
         }
 
-        static List<List<int>> GetConsecutiveRanges(List<int> values)
+        static List<RangeData> GetConsecutiveRanges(List<int> values)
         {
             values.Sort();
-            List<List<int>> ranges = RangeListOperations.GetConsecutiveRangesFromSortedList(values);
+            List<RangeData> ranges = RangeListOperations.GetConsecutiveRangesFromSortedList(values);
             return ranges;
         }
     }
