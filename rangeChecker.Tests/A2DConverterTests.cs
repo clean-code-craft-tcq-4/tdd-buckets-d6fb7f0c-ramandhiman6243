@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using Xunit;
 
 namespace Range.Tests
@@ -31,7 +31,7 @@ namespace Range.Tests
         public class TestsFor12BitConverter
         {
             [Fact]
-            private void TestValidValuesConversion()
+            private void TestValidValuesConversion12Bit()
             {
                 TestConversion(Get12BitConverter(), new List<int> { 0, 1 }, new List<int> { 0, 0 }, new List<int>());
                 TestConversion(Get12BitConverter(), new List<int> { 4093, 4094 }, new List<int> { 10, 10 }, new List<int>());
@@ -39,27 +39,27 @@ namespace Range.Tests
             }
 
             [Fact]
-            private void TestErrorValuesConversion()
+            private void TestErrorValuesConversion12Bit()
             {
                 TestConversion(Get12BitConverter(), new List<int> { 4095, 5012 }, new List<int> { ErrorValue12Bit, ErrorValue12Bit }, new List<int> { 4095, 5012 });
                 TestConversion(Get12BitConverter(), new List<int> { -1 }, new List<int> { ErrorValue12Bit }, new List<int> { -1 });
             }
 
             [Fact]
-            private void TestMixedValuesConversion()
+            private void TestMixedValuesConversion12Bit()
             {
                 TestConversion(Get12BitConverter(), new List<int> { 4093, 4094, 4095 }, new List<int> { 10, 10, ErrorValue12Bit }, new List<int> { 4095 });
                 TestConversion(Get12BitConverter(), new List<int> { -1, 0, 1, 1146, 4093, 4094, 4095 }, new List<int> { ErrorValue12Bit, 0, 0, 3, 10, 10, ErrorValue12Bit }, new List<int> { -1, 4095 });
             }
 
             [Fact]
-            private void TestEmptyValuesConversion()
+            private void TestEmptyValuesConversion12Bit()
             {
                 TestConversion(Get12BitConverter(), new List<int>(), new List<int>(), new List<int>());
             }
 
             [Fact]
-            private void TestNullValuesConversion()
+            private void TestNullValuesConversion12Bit()
             {
                 TestConversion(Get12BitConverter(), null, new List<int>(), new List<int>());
             }
@@ -68,7 +68,7 @@ namespace Range.Tests
         public class TestsFor10BitConverter
         {
             [Fact]
-            private void TestValidValuesConversion()
+            private void TestValidValuesConversion10Bit()
             {
                 TestConversion(Get10BitConverter(), new List<int> { 0, 1 }, new List<int> { -15, -15 }, new List<int>());
                 TestConversion(Get10BitConverter(), new List<int> { 1021, 1022 }, new List<int> { 15, 15 }, new List<int>());
@@ -76,27 +76,27 @@ namespace Range.Tests
             }
 
             [Fact]
-            private void TestErrorValuesConversion()
+            private void TestErrorValuesConversion10Bit()
             {
                 TestConversion(Get10BitConverter(), new List<int> { 1023, 1024 }, new List<int> { ErrorValue10Bit, ErrorValue10Bit }, new List<int> { 1023, 1024 });
                 TestConversion(Get10BitConverter(), new List<int> { -1 }, new List<int> { ErrorValue10Bit }, new List<int> { -1 });
             }
 
             [Fact]
-            private void TestMixedValuesConversion()
+            private void TestMixedValuesConversion10Bit()
             {
                 TestConversion(Get10BitConverter(), new List<int> { 1021, 1022, 1023 }, new List<int> { 15, 15, ErrorValue10Bit }, new List<int> { 1023 });
                 TestConversion(Get10BitConverter(), new List<int> { -1, 0, 1, 511, 1021, 1022, 1023 }, new List<int> { ErrorValue10Bit, -15, -15, 0, 15, 15, ErrorValue10Bit }, new List<int> { -1, 1023 });
             }
 
             [Fact]
-            private void TestEmptyValuesConversion()
+            private void TestEmptyValuesConversion10Bit()
             {
                 TestConversion(Get10BitConverter(), new List<int>(), new List<int>(), new List<int>());
             }
 
             [Fact]
-            private void TestNullValuesConversion()
+            private void TestNullValuesConversion10Bit()
             {
                 TestConversion(Get10BitConverter(), null, new List<int>(), new List<int>());
             }
