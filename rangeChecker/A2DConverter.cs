@@ -12,14 +12,11 @@ namespace Range
         private int minAnalogValue;
         private int maxAnalogValue;
 
-        private int invalidValue;
-
-        public A2DConverter(int bitCount, int minCurrentLimit, int maxCurrentLimit, int invalidValue)
+        public A2DConverter(int bitCount, int minCurrentLimit, int maxCurrentLimit)
         {
             this.bitCount = bitCount;
             this.minCurrentLimit = minCurrentLimit;
             this.maxCurrentLimit = maxCurrentLimit;
-            this.invalidValue = invalidValue;
 
             minAnalogValue = 0;
             maxAnalogValue = (int)Math.Pow(2, bitCount) - 2;
@@ -47,18 +44,16 @@ namespace Range
 
         private void AppendValueToOutput(int inputValue, A2DConversionOutput conversionOutput)
         {
-            int outputValue = invalidValue;
-
             if (IsValueInDefinedRange(inputValue))
             {
-                outputValue = ConvertToDigital(inputValue);
+                int outputValue = ConvertToDigital(inputValue);
+                conversionOutput.AppendOutputValue(outputValue);
             }
             else
             {
                 conversionOutput.AppendErrorValue(inputValue);
             }
 
-            conversionOutput.AppendOutputValue(outputValue);
         }
 
         private bool IsValueInDefinedRange(int inputValue)
