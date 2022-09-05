@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 
 namespace Range
@@ -63,7 +63,21 @@ namespace Range
 
         private bool IsValueInRange(int inputValue, int minLimit, int maxLimit)
         {
-            if (inputValue >= minLimit && inputValue <= maxLimit)
+            return IsValueMoreThanOrEqual(inputValue, minLimit) && IsValueLessThanOrEqual(inputValue, maxLimit);
+        }
+
+        private bool IsValueLessThanOrEqual(int inputValue, int maxLimit)
+        {
+            if (inputValue <= maxLimit)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        private bool IsValueMoreThanOrEqual(int inputValue, int minLimit)
+        {
+            if (inputValue >= minLimit)
             {
                 return true;
             }
