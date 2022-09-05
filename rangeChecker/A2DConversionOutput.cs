@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace Range
 {
@@ -31,6 +32,16 @@ namespace Range
         public List<int> GetErrorValues()
         {
             return errorValues;
+        }
+
+        public List<int> GetAbsoluteOutputValues()
+        {
+            List<int> absoluteValues = new List<int>();
+            foreach (var value in GetOutputValues())
+            {
+                absoluteValues.Add(Math.Abs(value));
+            }
+            return absoluteValues;
         }
     }
 }
